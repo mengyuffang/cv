@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>方孟榆 · 个人简历</title>
+  <meta name="description" content="方孟榆 — 现代极简风交互式个人简历" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#ffffff;
+      --text:#111217;
+      --muted:#6b6f76;
+      --accent:#b388ff; /* 可替换为你喜欢的高级强调色 */
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+      --radius:12px;
+      --gap:24px;
+    }
+    @media (prefers-reduced-motion: reduce){
+      :root{--r:0s}
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg, var(--bg), #f3f3f4);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding-bottom:48px;
+    }
+
+    .container{
+      max-width:var(--max-width);
+      margin:40px auto;
+      padding:28px;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:var(--gap);
+      align-items:start;
+    }
+
+    /* Header / Nav */
+    header{
+      position:fixed;
+      top:18px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 40px);
+      max-width:var(--max-width);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      z-index:40;
+      background:transparent;
+      padding:10px 14px;
+      pointer-events:auto;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:46px;height:46px;border-radius:10px;
+      background:linear-gradient(135deg, rgba(17,18,23,0.9), rgba(34,34,38,0.9));
+      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+      font-size:18px;box-shadow:0 6px 18px rgba(16,18,20,0.08);
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 12px;
+      border-radius:8px;
+      transition:all .22s cubic-bezier(.2,.9,.2,1);
+      font-size:14px;
+    }
+    nav a:hover, nav a.active{
+      color:var(--text);
+      background:rgba(0,0,0,0.04);
+      transform:translateY(-2px);
+    }
+
+    /* Sidebar */
+    aside{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9));
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 8px 30px rgba(15,18,20,0.03);
+      backdrop-filter: blur(6px);
+    }
+    .avatar{
+      width:100%;height:220px;border-radius:10px;
+      background:linear-gradient(135deg, #e9e7ff, #ffffff);
+      display:flex;align-items:flex-end;padding:18px;color:#111;
+      font-weight:700;font-size:20px;
+    }
+    .name{font-size:20px;margin:6px 0 2px}
+    .role{color:var(--muted);font-size:13px;margin-bottom:12px}
+    .contact{display:flex;flex-direction:column;gap:8px;font-size:14px}
+    .chip{
+      display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;
+      background:transparent;color:var(--muted);border:1px solid rgba(0,0,0,0.04);
+      font-weight:600;font-size:13px;
+    }
+
+    /* Main content */
+    main{
+      min-width:0;
+    }
+    section.card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      margin-bottom:var(--gap);
+      box-shadow: 0 8px 30px rgba(16,18,20,0.03);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,18,20,0.06)}
+
+    h2{
+      margin:0 0 12px;font-size:16px;
+      display:flex;align-items:center;gap:12px;
+    }
+    .muted{color:var(--muted);font-size:14px}
+
+    /* Education/Experience timeline */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+    .item .title{font-weight:700}
+    .item .subtitle{color:var(--muted);font-size:13px}
+    .tag{font-size:12px;color:var(--accent);font-weight:700}
+
+    /* Skills grid */
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));padding:8px 12px;border-radius:999px;font-weight:600;color:var(--muted);font-size:13px}
+
+    /* Projects / Portfolio */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:14px;
+    }
+    .proj{
+      height:160px;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;color:#fff;
+      background:linear-gradient(135deg, rgba(0,0,0,0.24), rgba(0,0,0,0.12)), linear-gradient(120deg, #00000044, #00000022);
+      transition:transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
+      cursor:pointer;
+    }
+    .proj:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(11,12,16,0.12)}
+    .proj .p-title{font-weight:700}
+    .proj .p-meta{font-size:13px;color:rgba(255,255,255,0.85)}
+
+    /* Contact form */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    input, textarea{
+      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);font-size:14px;
+      background:transparent;resize:vertical;
+    }
+    .btn{
+      display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:10px;background:var(--accent);color:white;border:none;font-weight:700;
+      cursor:pointer;transition:transform .16s ease, box-shadow .16s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .note{font-size:13px;color:var(--muted)}
+
+    /* Reveal animation */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1)}
+    .reveal.in-view{opacity:1;transform:translateY(0)}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr; padding:18px; margin-top:80px;}
+      header{top:8px}
+      .avatar{height:160px}
+      .projects-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:520px){
+      nav{display:none}
+      .logo{width:44px;height:44px;font-size:16px}
+      header{left:12px;transform:none;width:calc(100% - 24px)}
+    }
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand" aria-hidden="false">
+      <div class="logo" aria-hidden="true">方M</div>
+      <div style="line-height:1">
+        <div style="font-weight:700">方孟榆</div>
+        <div style="font-size:13px;color:var(--muted)">视觉传达设计 · 交互与界面</div>
+      </div>
+    </div>
+    <nav aria-label="主导航">
+      <a href="#about" class="nav-link">关于</a>
+      <a href="#education" class="nav-link">教育</a>
+      <a href="#experience" class="nav-link">经历</a>
+      <a href="#skills" class="nav-link">技能</a>
+      <a href="#projects" class="nav-link">项目</a>
+      <a href="#contact" class="nav-link">联系方式</a>
+    </nav>
+  </header>
+
+  <div class="container" role="main">
+    <aside class="reveal" id="profile">
+      <div class="avatar" role="img" aria-label="方孟榆 头像占位">
+        <div>
+          <div class="name">方孟榆</div>
+          <div class="role">视觉传达设计 · 设计师</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px" class="contact">
+        <div class="chip" aria-hidden="false">Tel: <a href="tel:+85269179643" style="color:inherit;text-decoration:none;margin-left:6px;font-weight:700">(+852) 6917 9643</a></div>
+        <div class="chip">Email: <a href="mailto:mengyufang@LN.hk" style="color:inherit;text-decoration:none;margin-left:6px;font-weight:700">mengyufang@LN.hk</a></div>
+        <div class="chip">地点：香港 / 珠海</div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="muted">个人简介</div>
+        <p style="margin:8px 0 0;color:var(--text)">现代极简风交互式个人简历网站设计者，擅长视觉系统、品牌物料及界面体验，强调克制、专业与年轻的设计语言。</p>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="muted">语言</div>
+        <div style="margin-top:8px" class="skills">
+          <div class="skill">粤语（流利）</div>
+          <div class="skill">普通话（母语）</div>
+          <div class="skill">英语（雅思5.5）</div>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <section id="about" class="card reveal">
+        <h2>关于我</h2>
+        <p class="muted">设计理念：简洁大方，高级设计感。注重视觉层级与留白，避免模板感与过度装饰，项目呈现注重视觉冲击力与专业性。</p>
+        <p style="margin-top:12px">擅长品牌视觉设计、海报与排版、UI/交互设计与推广物料，关注用户体验与商业转化，具备从视觉到交互的整合能力。</p>
+      </section>
+
+      <section id="education" class="card reveal">
+        <h2>教育背景</h2>
+        <div class="timeline">
+          <div class="item">
+            <div>
+              <div class="title">香港岭南大学 — 艺术科技与商业 理学硕士（在读）</div>
+              <div class="subtitle">2026年9月–至今（预计2027年6月毕业）</div>
+              <div class="muted" style="margin-top:8px">核心课程：中西艺术史、艺术产业会计与财务、艺术与科学的交叉、设计思维与创造力、艺术金融与科技、交互艺术与技术、从AI到NFT</div>
+            </div>
+            <div class="tag">在读</div>
+          </div>
+
+          <div class="item" style="margin-top:8px">
+            <div>
+              <div class="title">北京师范大学珠海分校 — 视觉传达设计 艺术学学士</div>
+              <div class="subtitle">2020年9月–2024年6月 | GPA：3.2/4.0（82/100）</div>
+              <div class="muted" style="margin-top:8px">核心课程：视觉设计基础（92）、印前与印后（91）、素描基础（90）、商业插画（87）、图形符号设计（87）、出版物设计（86）</div>
+            </div>
+            <div class="tag">学士</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="card reveal">
+        <h2>工作经历 & 实习</h2>
+        <div class="timeline" style="margin-top:8px">
+          <div class="item">
+            <div>
+              <div class="title">广州心动零食品牌管理有限公司 · 设计师</div>
+              <div class="subtitle">2026年2月–2026年8月</div>
+              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+                <li>建立门店物料更新机制，围绕新品上市、节假日及季节性节点策划并交付宣传海报，保持品牌氛围统一，提升客流量与顾客停留时间。</li>
+                <li>负责公众号推广策划与视觉设计，产出文章配图、封面图及活动视觉，与运营团队定期发布，提升品牌曝光度与私域互动。</li>
+              </ul>
+            </div>
+            <div class="tag">设计师</div>
+          </div>
+
+          <div class="item">
+            <div>
+              <div class="title">广州粤音文化传媒有限公司 · 美术设计部设计师</div>
+              <div class="subtitle">2025年8月–2026年1月</div>
+              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+                <li>负责企业文化宣传物料及品牌相关视觉资产，包括海报、宣传册与营销活动物料，确保视觉形象统一，强化企业文化形象。</li>
+                <li>主导公司教育类小程序及APP（测试阶段）的UI与创意设计，涵盖界面布局、原创图标、插画、课程详情页及相关推广物料，优化用户体验，塑造差异化产品风格。</li>
+              </ul>
+            </div>
+            <div class="tag">设计师</div>
+          </div>
+
+          <div class="item">
+            <div>
+              <div class="title">开平悦研有限公司 · 品牌设计部平面设计师</div>
+              <div class="subtitle">2024年7月–2024年12月</div>
+              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+                <li>升级公司Logo并交付多套宣传物料，大部分设计一次性通过初稿审核。</li>
+                <li>以核心产品为灵感创作IP形象，提升顾客品牌记忆度；设计以本地建筑为特色的文化主题包装系列，并启动新中式烘焙项目的品牌设计。</li>
+              </ul>
+            </div>
+            <div class="tag">平面设计师</div>
+          </div>
+
+          <div class="item" style="margin-top:8px">
+            <div>
+              <div class="title">广东名扬广告有限公司 · 设计部平面设计实习</div>
+              <div class="subtitle">2023年7月–2023年8月（实习）</div>
+              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+                <li>协助海报与版式设计，独立完成书籍封面设计，获得客户好评。</li>
+              </ul>
+            </div>
+            <div class="tag">实习</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="awards" class="card reveal">
+        <h2>荣誉与奖项</h2>
+        <ul style="margin-top:8px;padding-left:18px;color:var(--muted)">
+          <li>第二届华发基金会杯环保海报设计大赛 三等奖（2023年3月）</li>
+          <li>「山海相逢：正当红·竹尊协作设计赋能展」 2022珠海国际设计优秀奖（2023年3月）</li>
+          <li>中国大学生广告艺术节 学院奖 优秀奖（2022年12月）</li>
+        </ul>
+      </section>
+
+      <section id="skills" class="card reveal">
+        <h2>技能与证书</h2>
+        <div style="margin-top:8px" class="skills">
+          <div class="skill">视觉传达</div>
+          <div class="skill">品牌设计</div>
+          <div class="skill">UI / 交互</div>
+          <div class="skill">排版与印刷</div>
+          <div class="skill">插画创作</div>
+          <div class="skill">Figma / Adobe CC</div>
+          <div class="skill">用户体验</div>
+        </div>
+        <p class="note" style="margin-top:12px">语言：粤语（流利）、英语（雅思5.5）</p>
+      </section>
+
+      <section id="projects" class="card reveal">
+        <h2>项目与作品集</h2>
+        <p class="muted">精选项目展示（如需加入更多作品或链接到独立作品集，我可以帮你接入图像、Dribbble/Behance 链接或作品详情页）。</p>
+        <div style="margin-top:12px" class="projects-grid">
+          <div class="proj" tabindex="0" role="button" aria-pressed="false" onclick="openProject('品牌视觉与门店物料')"
+               style="background:linear-gradient(135deg,#2b2b2b,#111);">
+            <div class="p-title">品牌视觉与门店物料</div>
+            <div class="p-meta">海报、宣传物料、季节性活动视觉</div>
+          </div>
+
+          <div class="proj" tabindex="0" role="button" onclick="openProject('公众号与推广视觉')"
+               style="background:linear-gradient(135deg,#4b3f78,#2b2548);">
+            <div class="p-title">公众号与推广视觉</div>
+            <div class="p-meta">图文配图、封面与活动视觉</div>
+          </div>
+
+          <div class="proj" tabindex="0" role="button" onclick="openProject('教育类小程序与APP UI')"
+               style="background:linear-gradient(135deg,#0b3f51,#042b33);">
+            <div class="p-title">教育类小程序与APP UI</div>
+            <div class="p-meta">界面、图标、插画与课程页</div>
+          </div>
+
+          <div class="proj" tabindex="0" role="button" onclick="openProject('包装与IP形象')"
+               style="background:linear-gradient(135deg,#5a2f1b,#2b1509);">
+            <div class="p-title">包装与IP形象</div>
+            <div class="p-meta">主题包装、IP 创作</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="card reveal">
+        <h2>联系方式</h2>
+        <p class="muted">欢迎联系我进行项目合作、咨询或查看完整作品集。</p>
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <a class="btn" href="mailto:mengyufang@LN.hk">发送邮件</a>
+          <a class="btn" href="tel:+85269179643" style="background:transparent;color:var(--text);border:1px solid rgba(0,0,0,0.06)">致电我</a>
+        </div>
+
+        <div style="margin-top:14px" class="note">也可在校园或作品展示中安排线下面谈 — 我在香港与珠海两地均可协调时间。</div>
+      </section>
+
+      <footer class="reveal">
+        <div>© 方孟榆 · 2026 — 现代极简风视觉设计 · 如需定制页面或部署帮助，请告诉我。</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Smooth scrolling and nav active state
+    document.querySelectorAll('a.nav-link').forEach(link=>{
+      link.addEventListener('click', e=>{
+        e.preventDefault();
+        const id = link.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          el.scrollIntoView({behavior:'smooth',block:'start'});
+          history.replaceState(null,'', '#'+id);
+        }
+      });
+    });
+
+    // IntersectionObserver for reveal animations and nav highlighting
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) en.target.classList.add('in-view');
+      });
+    }, {threshold:0.14});
+    reveals.forEach(r=>io.observe(r));
+
+    // Highlight nav link of current section
+    const sections = Array.from(document.querySelectorAll('main section, main footer'));
+    const navLinks = document.querySelectorAll('nav a.nav-link');
+    const ioNav = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          const id = en.target.id;
+          navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+id));
+        }
+      });
+    }, {threshold:0.35});
+    sections.forEach(s=>ioNav.observe(s));
+
+    // Simple project click handler (placeholder)
+    function openProject(title){
+      // Replace with modal or link to project detail / image lightbox
+      alert(title + "\\n如需可将该项目链接至独立作品页或打开图片画廊。");
+    }
+
+    // Respect reduced motion preference: disable scroll animations if requested
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(media.matches){
+      document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));
+    }
+
+    // Minor performance: lazy set focus outline only on keyboard navigation
+    (function(){
+      function handleFirstTab(e){
+        if(e.key === 'Tab'){
+          document.body.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+</body>
+</html>
