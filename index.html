@@ -4,555 +4,251 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>方孟榆 · 个人简历</title>
-  <meta name="description" content="方孟榆 — 现代极简风交互式个人简历" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="方孟榆 — 手绘风个人作品集简历" />
   <style>
-    :root{
-      --bg:#f5f2ff;
-      --bg-2:#eef7ff;
-      --card:#ffffff;
-      --text:#17191f;
-      --muted:#646d7a;
-      --accent:#7c5cff;
-      --accent-2:#ff7eb6;
-      --line:rgba(23,25,31,0.08);
-      --shadow:0 24px 60px rgba(42,26,89,0.12);
-      --max-width:1180px;
-      --radius:18px;
-      --gap:26px;
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      :root{--r:0s}
+    :root {
+      --paper:#f5f3ee;
+      --ink:#111111;
+      --muted:#4e4e4e;
+      --line:#171717;
+      --shadow:rgba(17,17,17,0.12);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{height:100%;margin:0}
     body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:
-        radial-gradient(circle at top left, rgba(124,92,255,0.18), transparent 22%),
-        radial-gradient(circle at right center, rgba(255,126,182,0.16), transparent 24%),
-        linear-gradient(180deg, var(--bg), #f8f8fb 28%, #f4f6fb);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.6;
-      padding-bottom:48px;
-      position:relative;
-      overflow-x:hidden;
-    }
-    body::before,
-    body::after{
-      content:"";
-      position:fixed;
-      width:320px;height:320px;border-radius:50%;
-      filter:blur(56px);opacity:.25;pointer-events:none;z-index:0;
-    }
-    body::before{background:rgba(124,92,255,0.18);top:80px;left:-80px}
-    body::after{background:rgba(255,126,182,0.14);bottom:30px;right:-70px}
-
-    a{text-decoration:none}
-    .container{
-      position:relative;
-      z-index:1;
-      max-width:var(--max-width);
-      margin:56px auto 0;
-      padding:28px;
-      display:grid;
-      grid-template-columns: 330px 1fr;
-      gap:var(--gap);
-      align-items:start;
+      display:flex;justify-content:center;align-items:center;
+      padding:24px;background:#e7e5e1;
+      font-family:"Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color:var(--ink);overflow:hidden;
     }
 
-    header{
-      position:fixed;
-      top:18px;
-      left:50%;
-      transform:translateX(-50%);
-      width:calc(100% - 40px);
-      max-width:var(--max-width);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      z-index:40;
-      background:rgba(255,255,255,0.57);
-      border:1px solid rgba(255,255,255,0.5);
-      border-radius:18px;
-      box-shadow: 0 10px 30px rgba(28,22,39,0.06);
-      backdrop-filter: blur(12px);
-      padding:12px 16px;
-      pointer-events:auto;
+    .board-shell{
+      width:min(96vw,1500px);height:min(92vh,850px);position:relative;
+      background:var(--paper);border:10px solid var(--line);overflow:hidden;
+      box-shadow:0 18px 36px rgba(0,0,0,0.12);
     }
 
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .logo{
-      width:48px;height:48px;border-radius:14px;
-      background:linear-gradient(135deg, #17191f, #4a3d7d 60%, #7c5cff);
-      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;
-      font-size:18px;box-shadow:0 8px 18px rgba(84,61,176,0.28);
-    }
-    nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    nav a{
-      color:var(--muted);
-      text-decoration:none;
-      font-weight:700;
-      padding:8px 12px;
-      border-radius:12px;
-      transition:all .22s cubic-bezier(.2,.9,.2,1);
-      font-size:13px;
-      letter-spacing:.02em;
-    }
-    nav a:hover, nav a.active{
-      color:var(--text);
-      background:rgba(124,92,255,0.09);
-      transform:translateY(-1px);
-      box-shadow: inset 0 0 0 1px rgba(124,92,255,0.08);
+    .top-row{
+      position:absolute;top:18px;left:22px;right:18px;
+      display:flex;justify-content:space-between;align-items:flex-start;gap:22px;z-index:3;
     }
 
-    aside{
-      position:sticky;
-      top:94px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.92));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
+    .top-left{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+
+    .little-box{min-width:180px;display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--ink)}
+    .little-box .label{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:500}
+    .little-box .label .mark{font-size:18px;font-weight:700;transform:rotate(8deg)}
+    .little-box .value{font-size:18px;font-weight:500;margin-left:2px}
+
+    .toolbar{
+      display:flex;align-items:center;gap:12px;min-width:320px;height:42px;padding:8px 14px;
+      border:2px solid rgba(17,17,17,0.82);background:rgba(255,255,255,0.4);border-radius:8px;
+      box-shadow:inset 0 0 0 1px rgba(17,17,17,0.1);font-size:13px;color:var(--muted);
     }
-    .avatar{
-      width:100%;height:220px;border-radius:16px;
-      background:linear-gradient(135deg, rgba(124,92,255,0.18), rgba(255,126,182,0.12), #ffffff 72%);
-      display:flex;align-items:flex-end;padding:20px;color:#111;
-      border:1px solid rgba(124,92,255,0.08);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,0.7);
-      position:relative;
-      overflow:hidden;
+    .toolbar .pill{
+      display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:2px solid var(--ink);
+      border-radius:4px;background:rgba(255,255,255,0.25);font-size:11px;
     }
-    .avatar::before{
-      content:"";
-      position:absolute;inset:20px 22px auto auto;
-      width:120px;height:120px;border-radius:50%;
-      background:radial-gradient(circle at center, rgba(255,255,255,0.9), rgba(255,255,255,0));
-      filter:blur(6px);
-    }
-    .name{font-size:22px;margin:8px 0 2px;font-weight:800}
-    .role{color:var(--muted);font-size:13px;margin-bottom:12px;letter-spacing:.04em}
-    .contact{display:flex;flex-direction:column;gap:10px;font-size:14px}
-    .chip{
-      display:inline-flex;gap:8px;align-items:center;padding:9px 12px;border-radius:999px;
-      background:rgba(124,92,255,0.04);color:var(--muted);border:1px solid rgba(124,92,255,0.06);
-      font-weight:600;font-size:13px;
+    .toolbar .input-txt{
+      flex:1;text-align:center;font-size:15px;letter-spacing:0.04em;transform:translateY(-1px);
+      font-family:"Segoe Print", "Bradley Hand", cursive;
     }
 
-    main{min-width:0}
-    section.card,
-    .hero{
-      background:rgba(255,255,255,0.78);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:24px;
-      margin-bottom:var(--gap);
-      box-shadow:0 20px 40px rgba(17,19,24,0.03);
-      transition:transform .22s ease, box-shadow .22s ease;
-      backdrop-filter: blur(6px);
-    }
-    .card:hover, .hero:hover{transform:translateY(-4px);box-shadow:0 24px 46px rgba(17,19,24,0.05)}
+    .scribble-layer{position:absolute;inset:0;z-index:1;pointer-events:none}
 
-    .hero{
-      display:flex;justify-content:space-between;align-items:end;gap:18px;
-      background:linear-gradient(135deg, rgba(124,92,255,0.10), rgba(255,126,182,0.08), rgba(255,255,255,0.8));
-      overflow:hidden;
-      position:relative;
+    .doodle-note{
+      position:absolute;display:flex;align-items:center;justify-content:center;padding:10px 16px;min-width:110px;height:40px;
+      border:2px solid rgba(17,17,17,0.8);background:rgba(255,255,255,0.5);border-radius:14px;
+      box-shadow:0 8px 16px rgba(0,0,0,0.04);color:var(--ink);font-size:14px;font-weight:500;
+      pointer-events:auto;cursor:pointer;user-select:none;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+      font-family:"Segoe Print", "Bradley Hand", cursive;
     }
-    .hero::before{
-      content:"";
-      position:absolute;right:-32px;top:-36px;width:160px;height:160px;border-radius:50%;
-      background:radial-gradient(circle, rgba(124,92,255,0.25), rgba(124,92,255,0));
-    }
-    .hero-copy{max-width:60%;position:relative;z-index:1}
-    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(124,92,255,0.08);color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-    h1{margin:14px 0 8px;font-size:clamp(2rem,4vw,3rem);line-height:1.05;letter-spacing:-.04em}
-    .hero-copy p{margin:0;color:var(--muted);max-width:58ch}
-    .hero-metrics{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;position:relative;z-index:1}
-    .metric{min-width:120px;background:rgba(255,255,255,0.72);padding:12px 14px;border-radius:14px;border:1px solid rgba(124,92,255,0.08);box-shadow:0 12px 24px rgba(41,31,76,0.04)}
-    .metric strong{display:block;font-size:20px;line-height:1.2}
-    .metric span{font-size:12px;color:var(--muted)}
-    .mini-grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px;margin-top:12px}
-    .service{display:flex;gap:12px;padding:14px;border:1px solid rgba(124,92,255,0.08);border-radius:16px;background:linear-gradient(180deg, rgba(124,92,255,0.03), rgba(255,255,255,0.5));}
-    .service-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg, var(--accent), #b39bff);color:white;font-weight:800;font-size:16px;box-shadow:0 10px 18px rgba(124,92,255,0.2)}
-    .service strong{display:block;margin-bottom:4px;font-size:14px}
-    .service p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
-
-    h2{
-      margin:0 0 14px;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:12px;
-    }
-    h2::before{
-      content:"";display:inline-block;width:9px;height:9px;border-radius:50%;
-      background:linear-gradient(135deg, var(--accent), #b59cff);
-      box-shadow:0 0 0 5px rgba(124,92,255,0.08);
-    }
-    .muted{color:var(--muted);font-size:14px}
-
-    .timeline{display:flex;flex-direction:column;gap:16px}
-    .item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;padding:2px 0}
-    .item .title{font-weight:800}
-    .item .subtitle{color:var(--muted);font-size:13px}
-    .tag{font-size:11px;color:var(--accent);font-weight:800;padding:7px 10px;border-radius:999px;background:rgba(124,92,255,0.06)}
-
-    .skills{display:flex;flex-wrap:wrap;gap:10px}
-    .skill{background:linear-gradient(180deg, rgba(124,92,255,0.06), rgba(124,92,255,0.02));padding:8px 12px;border-radius:999px;font-weight:700;color:var(--muted);font-size:13px;border:1px solid rgba(124,92,255,0.05)}
-
-    .projects-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:14px;
-    }
-    .proj{
-      min-height:170px;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;color:#fff;
-      background:linear-gradient(135deg, rgba(0,0,0,0.26), rgba(0,0,0,0.12)), linear-gradient(120deg, #2a2f46, #1d1d28 38%, #4c3b7f);
-      border:1px solid rgba(255,255,255,0.06);
-      transition:transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
-      cursor:pointer;
-    }
-    .proj:hover{transform:translateY(-8px);box-shadow:0 22px 36px rgba(11,12,16,0.14)}
-    .proj .p-title{font-weight:800;font-size:17px}
-    .proj .p-meta{font-size:13px;color:rgba(255,255,255,0.85)}
-
-    .btn{
-      display:inline-flex;gap:8px;align-items:center;padding:12px 16px;border-radius:12px;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:white;border:none;font-weight:800;cursor:pointer;transition:transform .16s ease, box-shadow .16s ease;box-shadow:0 14px 26px rgba(124,92,255,0.22);
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn.alt{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none}
-    .note{font-size:13px;color:var(--muted)}
-
-    .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1)}
-    .reveal.in-view{opacity:1;transform:translateY(0)}
-
-    @media (max-width:980px){
-      .container{grid-template-columns:1fr; padding:18px; margin-top:80px;}
-      aside{position:relative;top:0}
-      .hero{flex-direction:column;align-items:flex-start}
-      .hero-copy{max-width:100%}
-      .hero-metrics{justify-content:flex-start}
-      .projects-grid{grid-template-columns:1fr}
-    }
-    @media (max-width:520px){
-      nav{display:none}
-      .logo{width:44px;height:44px;font-size:16px}
-      header{left:12px;transform:none;width:calc(100% - 24px)}
-      .container{padding:16px}
-      .metric{min-width:110px}
+    .doodle-note.medium{min-width:140px;height:48px;padding:12px 18px}
+    .doodle-note.big{min-width:170px;height:54px;padding:18px 22px}
+    .doodle-note:hover,.doodle-note:focus-visible,.doodle-note.active{
+      transform:translateY(-4px) rotate(0deg) scale(1.03);background:rgba(255,255,255,0.85);
+      box-shadow:0 16px 26px rgba(0,0,0,0.08);outline:none;
     }
 
-    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+    .tag-brand{left:120px;top:224px;transform:rotate(-8deg)}
+    .tag-ui{left:290px;top:350px;transform:rotate(12deg)}
+    .tag-pack{left:440px;top:230px;transform:rotate(-6deg)}
+    .tag-ill{left:600px;top:440px;transform:rotate(8deg)}
+    .tag-visual{left:780px;top:330px;transform:rotate(-10deg)}
+    .tag-motion{left:1000px;top:420px;transform:rotate(9deg)}
+
+    .focus-panel{
+      position:absolute;right:110px;top:100px;width:240px;height:440px;display:flex;flex-direction:column;
+      justify-content:flex-start;align-items:flex-start;z-index:2;font-family:"Segoe Print","Bradley Hand",cursive;
+    }
+    .focus-panel .vertical-word{
+      writing-mode:vertical-rl;text-orientation:mixed;position:absolute;right:-34px;top:130px;
+      font-size:72px;line-height:1;letter-spacing:10px;font-weight:700;color:var(--ink);pointer-events:none;
+      transform:translateY(20px);
+    }
+
+    .focus-card{
+      width:100%;background:rgba(255,255,255,0.16);border:2px solid rgba(17,17,17,0.8);border-radius:18px;
+      padding:18px 18px 16px;position:relative;box-shadow:0 20px 26px rgba(17,17,17,0.04);
+    }
+    .focus-card::before{content:"";position:absolute;right:-18px;top:32px;width:42px;height:2px;background:var(--ink);transform:rotate(30deg)}
+    .focus-card .eyebrow{font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-family:"Helvetica Neue", Arial, sans-serif}
+    .focus-card h2{margin:0 0 8px;font-size:28px;line-height:1.1;font-weight:700}
+    .focus-card p{margin:0 0 12px;font-size:15px;line-height:1.5;color:var(--muted);font-family:"Helvetica Neue", Arial, sans-serif}
+    .focus-card ul{margin:0;padding-left:18px;color:var(--ink);font-size:15px;line-height:1.6;font-family:"Helvetica Neue", Arial, sans-serif}
+
+    .signature{
+      position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:18px;letter-spacing:0.04em;white-space:nowrap;
+      font-family:"Segoe Print", "Bradley Hand", cursive;
+    }
+    .signature em{font-style:normal;font-family:"Helvetica Neue", Arial, sans-serif;font-weight:700}
+
+    .paper-scribble{
+      position:absolute;border:2px solid rgba(17,17,17,0.8);background:rgba(255,255,255,0.26);border-radius:18px;
+      transform:rotate(-10deg);box-shadow:0 10px 20px rgba(0,0,0,0.05);
+    }
+    .paper-scribble.one{width:116px;height:86px;left:318px;top:420px}
+    .paper-scribble.two{width:86px;height:80px;left:550px;top:120px;transform:rotate(14deg)}
+    .paper-scribble.three{width:90px;height:78px;left:750px;top:520px;transform:rotate(-16deg)}
+    .paper-scribble.four{width:106px;height:82px;left:980px;top:260px;transform:rotate(12deg)}
+    .paper-scribble::before{content:"";position:absolute;inset:12px 12px auto auto;width:52%;height:30%;border:2px solid rgba(17,17,17,0.8);border-radius:12px;background:rgba(255,255,255,0.08)}
+
+    .cloud{
+      position:absolute;border:2px solid rgba(17,17,17,0.8);background:rgba(255,255,255,0.28);border-radius:999px;padding:10px 18px;font-size:18px;
+      box-shadow:0 8px 18px rgba(17,17,17,0.05);font-family:"Segoe Print", "Bradley Hand", cursive;
+    }
+    .cloud.one{left:620px;top:310px;transform:rotate(-5deg)}
+    .cloud.two{left:802px;top:420px;transform:rotate(6deg)}
+    .cloud.three{left:500px;top:550px;transform:rotate(-8deg)}
+
+    @media (max-width:1024px){
+      body{padding:18px;overflow:auto}
+      .board-shell{width:100%;height:auto;min-height:100vh}
+      .focus-panel{position:relative;right:auto;top:auto;width:100%;max-width:480px;margin:160px auto 80px}
+      .focus-panel .vertical-word{display:none}
+      .top-row{position:relative;top:auto;left:auto;right:auto;padding:18px 18px 0 18px;flex-wrap:wrap}
+      .toolbar{min-width:220px;width:100%}
+      .doodle-note{position:relative;left:auto !important;top:auto !important;display:inline-flex;margin:6px}
+      .scribble-layer{position:relative;display:flex;flex-wrap:wrap;gap:12px;padding:80px 18px 0}
+      .paper-scribble,.cloud{position:relative;left:auto !important;top:auto !important;display:inline-flex;margin:12px}
+      .signature{position:relative;bottom:auto;left:auto;transform:none;margin:22px auto 32px;display:block;text-align:center}
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand" aria-hidden="false">
-      <div class="logo" aria-hidden="true">方M</div>
-      <div style="line-height:1">
-        <div style="font-weight:700">方孟榆</div>
-        <div style="font-size:13px;color:var(--muted)">视觉传达设计 · 交互与界面</div>
+  <div class="board-shell">
+    <div class="top-row">
+      <div class="top-left">
+        <div class="little-box">
+          <div class="label"><span>我的专业</span><span class="mark">✎</span></div>
+          <div class="value">视觉设计</div>
+        </div>
+        <div class="little-box">
+          <div class="label"><span>申请岗位</span><span class="mark">✎</span></div>
+          <div class="value">品牌设计师</div>
+        </div>
+      </div>
+
+      <div class="toolbar" aria-label="工具栏">
+        <span class="pill">◻</span>
+        <span class="pill">▣</span>
+        <span class="input-txt">How to Create a Personal Portfolio</span>
       </div>
     </div>
-    <nav aria-label="主导航">
-      <a href="#about" class="nav-link">关于</a>
-      <a href="#education" class="nav-link">教育</a>
-      <a href="#experience" class="nav-link">经历</a>
-      <a href="#skills" class="nav-link">技能</a>
-      <a href="#projects" class="nav-link">项目</a>
-      <a href="#contact" class="nav-link">联系方式</a>
-    </nav>
-  </header>
 
-  <div class="container" role="main">
-    <aside class="reveal" id="profile">
-      <div class="avatar" role="img" aria-label="方孟榆 头像占位">
-        <div>
-          <div class="name">方孟榆</div>
-          <div class="role">视觉传达设计 · 设计师</div>
-        </div>
-      </div>
+    <div class="scribble-layer" aria-label="交互式设计能力标签">
+      <button class="doodle-note tag-brand active" data-skill="brand" type="button">品牌设计</button>
+      <button class="doodle-note tag-ui" data-skill="ui" type="button">UI / 交互</button>
+      <button class="doodle-note tag-pack" data-skill="pack" type="button">包装设计</button>
+      <button class="doodle-note medium tag-ill" data-skill="ill" type="button">插画创作</button>
+      <button class="doodle-note tag-visual" data-skill="visual" type="button">视觉策划</button>
+      <button class="doodle-note medium tag-motion" data-skill="motion" type="button">动态内容</button>
 
-      <div style="margin-top:14px" class="contact">
-        <div class="chip" aria-hidden="false">Tel: <a href="tel:+85269179643" style="color:inherit;text-decoration:none;margin-left:6px;font-weight:700">(+852) 6917 9643</a></div>
-        <div class="chip">Email: <a href="mailto:mengyufang@LN.hk" style="color:inherit;text-decoration:none;margin-left:6px;font-weight:700">mengyufang@LN.hk</a></div>
-        <div class="chip">地点：香港 / 珠海</div>
-      </div>
+      <div class="paper-scribble one"></div>
+      <div class="paper-scribble two"></div>
+      <div class="paper-scribble three"></div>
+      <div class="paper-scribble four"></div>
 
-      <div style="margin-top:16px">
-        <div class="muted">个人简介</div>
-        <p style="margin:8px 0 0;color:var(--text)">现代极简风交互式个人简历网站设计者，擅长视觉系统、品牌物料及界面体验，强调克制、专业与年轻的设计语言。</p>
-      </div>
+      <div class="cloud one">找到你</div>
+      <div class="cloud two">I’m fine</div>
+      <div class="cloud three">五彩斑斓</div>
+    </div>
 
-      <div style="margin-top:16px">
-        <div class="muted">语言</div>
-        <div style="margin-top:8px" class="skills">
-          <div class="skill">粤语（流利）</div>
-          <div class="skill">普通话（母语）</div>
-          <div class="skill">英语（雅思5.5）</div>
-        </div>
-      </div>
-    </aside>
-
-    <main>
-      <section class="hero reveal" aria-label="个人简介概览">
-        <div class="hero-copy">
-          <div class="eyebrow">Portfolio</div>
-          <h1>让品牌更清晰，也让作品更有说服力。</h1>
-          <p>我专注于品牌视觉、海报排版与交互体验设计，追求克制、专业、具有辨识度的设计语言，用细节提升用户理解与品牌记忆。</p>
-        </div>
-        <div class="hero-metrics" aria-label="个人亮点统计">
-          <div class="metric"><strong>3+</strong><span>行业经验</span></div>
-          <div class="metric"><strong>10+</strong><span>项目作品</span></div>
-          <div class="metric"><strong>3</strong><span>赛事奖项</span></div>
-        </div>
-      </section>
-
-      <section id="about" class="card reveal">
-        <h2>关于我</h2>
-        <p class="muted">设计理念：简洁大方，高级设计感。注重视觉层级与留白，避免模板感与过度装饰，项目呈现注重视觉冲击力与专业性。</p>
-        <p style="margin-top:12px">擅长品牌视觉设计、海报与排版、UI/交互设计与推广物料，关注用户体验与商业转化，具备从视觉到交互的整合能力。</p>
-      </section>
-
-      <section class="card reveal">
-        <h2>设计能力</h2>
-        <div class="mini-grid">
-          <div class="service">
-            <div class="service-icon">B</div>
-            <div>
-              <strong>品牌识别</strong>
-              <p>规划视觉系统，建立统一、可持续的品牌表达。</p>
-            </div>
-          </div>
-          <div class="service">
-            <div class="service-icon">U</div>
-            <div>
-              <strong>UI / 交互</strong>
-              <p>把信息结构和交互逻辑转化成舒适、清晰的体验。</p>
-            </div>
-          </div>
-          <div class="service">
-            <div class="service-icon">P</div>
-            <div>
-              <strong>包装与传播</strong>
-              <p>从视觉概念到落地物料，保持品牌冲击力和传播效率。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="education" class="card reveal">
-        <h2>教育背景</h2>
-        <div class="timeline">
-          <div class="item">
-            <div>
-              <div class="title">香港岭南大学 — 艺术科技与商业 理学硕士（在读）</div>
-              <div class="subtitle">2026年9月–至今（预计2027年6月毕业）</div>
-              <div class="muted" style="margin-top:8px">核心课程：中西艺术史、艺术产业会计与财务、艺术与科学的交叉、设计思维与创造力、艺术金融与科技、交互艺术与技术、从AI到NFT</div>
-            </div>
-            <div class="tag">在读</div>
-          </div>
-
-          <div class="item" style="margin-top:8px">
-            <div>
-              <div class="title">北京师范大学珠海分校 — 视觉传达设计 艺术学学士</div>
-              <div class="subtitle">2020年9月–2024年6月 | GPA：3.2/4.0（82/100）</div>
-              <div class="muted" style="margin-top:8px">核心课程：视觉设计基础（92）、印前与印后（91）、素描基础（90）、商业插画（87）、图形符号设计（87）、出版物设计（86）</div>
-            </div>
-            <div class="tag">学士</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" class="card reveal">
-        <h2>工作经历 & 实习</h2>
-        <div class="timeline" style="margin-top:8px">
-          <div class="item">
-            <div>
-              <div class="title">广州心动零食品牌管理有限公司 · 设计师</div>
-              <div class="subtitle">2026年2月–2026年8月</div>
-              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
-                <li>建立门店物料更新机制，围绕新品上市、节假日及季节性节点策划并交付宣传海报，保持品牌氛围统一，提升客流量与顾客停留时间。</li>
-                <li>负责公众号推广策划与视觉设计，产出文章配图、封面图及活动视觉，与运营团队定期发布，提升品牌曝光度与私域互动。</li>
-              </ul>
-            </div>
-            <div class="tag">设计师</div>
-          </div>
-
-          <div class="item">
-            <div>
-              <div class="title">广州粤音文化传媒有限公司 · 美术设计部设计师</div>
-              <div class="subtitle">2025年8月–2026年1月</div>
-              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
-                <li>负责企业文化宣传物料及品牌相关视觉资产，包括海报、宣传册与营销活动物料，确保视觉形象统一，强化企业文化形象。</li>
-                <li>主导公司教育类小程序及APP（测试阶段）的UI与创意设计，涵盖界面布局、原创图标、插画、课程详情页及相关推广物料，优化用户体验，塑造差异化产品风格。</li>
-              </ul>
-            </div>
-            <div class="tag">设计师</div>
-          </div>
-
-          <div class="item">
-            <div>
-              <div class="title">开平悦研有限公司 · 品牌设计部平面设计师</div>
-              <div class="subtitle">2024年7月–2024年12月</div>
-              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
-                <li>升级公司Logo并交付多套宣传物料，大部分设计一次性通过初稿审核。</li>
-                <li>以核心产品为灵感创作IP形象，提升顾客品牌记忆度；设计以本地建筑为特色的文化主题包装系列，并启动新中式烘焙项目的品牌设计。</li>
-              </ul>
-            </div>
-            <div class="tag">平面设计师</div>
-          </div>
-
-          <div class="item" style="margin-top:8px">
-            <div>
-              <div class="title">广东名扬广告有限公司 · 设计部平面设计实习</div>
-              <div class="subtitle">2023年7月–2023年8月（实习）</div>
-              <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
-                <li>协助海报与版式设计，独立完成书籍封面设计，获得客户好评。</li>
-              </ul>
-            </div>
-            <div class="tag">实习</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="awards" class="card reveal">
-        <h2>荣誉与奖项</h2>
-        <ul style="margin-top:8px;padding-left:18px;color:var(--muted)">
-          <li>第二届华发基金会杯环保海报设计大赛 三等奖（2023年3月）</li>
-          <li>「山海相逢：正当红·竹尊协作设计赋能展」 2022珠海国际设计优秀奖（2023年3月）</li>
-          <li>中国大学生广告艺术节 学院奖 优秀奖（2022年12月）</li>
+    <div class="focus-panel" aria-live="polite">
+      <div class="focus-card">
+        <div class="eyebrow">Featured</div>
+        <h2 id="skill-title">品牌设计</h2>
+        <p id="skill-summary">从品牌定位到视觉输出，构建清晰、可识别、可持续传播的视觉系统。</p>
+        <ul id="skill-list">
+          <li>品牌视觉识别与策略</li>
+          <li>海报、门店视觉与宣传物料</li>
+          <li>统一品牌语气与传播表现</li>
         </ul>
-      </section>
+      </div>
+      <div class="vertical-word">作品集</div>
+    </div>
 
-      <section id="skills" class="card reveal">
-        <h2>技能与证书</h2>
-        <div style="margin-top:8px" class="skills">
-          <div class="skill">视觉传达</div>
-          <div class="skill">品牌设计</div>
-          <div class="skill">UI / 交互</div>
-          <div class="skill">排版与印刷</div>
-          <div class="skill">插画创作</div>
-          <div class="skill">Figma / Adobe CC</div>
-          <div class="skill">用户体验</div>
-        </div>
-        <p class="note" style="margin-top:12px">语言：粤语（流利）、英语（雅思5.5）</p>
-      </section>
-
-      <section id="projects" class="card reveal">
-        <h2>项目与作品集</h2>
-        <p class="muted">精选项目展示（如需加入更多作品或链接到独立作品集，我可以帮你接入图像、Dribbble/Behance 链接或作品详情页）。</p>
-        <div style="margin-top:12px" class="projects-grid">
-          <div class="proj" tabindex="0" role="button" aria-pressed="false" onclick="openProject('品牌视觉与门店物料')"
-               style="background:linear-gradient(135deg,#2b2b2b,#111);">
-            <div class="p-title">品牌视觉与门店物料</div>
-            <div class="p-meta">海报、宣传物料、季节性活动视觉</div>
-          </div>
-
-          <div class="proj" tabindex="0" role="button" onclick="openProject('公众号与推广视觉')"
-               style="background:linear-gradient(135deg,#4b3f78,#2b2548);">
-            <div class="p-title">公众号与推广视觉</div>
-            <div class="p-meta">图文配图、封面与活动视觉</div>
-          </div>
-
-          <div class="proj" tabindex="0" role="button" onclick="openProject('教育类小程序与APP UI')"
-               style="background:linear-gradient(135deg,#0b3f51,#042b33);">
-            <div class="p-title">教育类小程序与APP UI</div>
-            <div class="p-meta">界面、图标、插画与课程页</div>
-          </div>
-
-          <div class="proj" tabindex="0" role="button" onclick="openProject('包装与IP形象')"
-               style="background:linear-gradient(135deg,#5a2f1b,#2b1509);">
-            <div class="p-title">包装与IP形象</div>
-            <div class="p-meta">主题包装、IP 创作</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="card reveal">
-        <h2>联系方式</h2>
-        <p class="muted">欢迎联系我进行项目合作、咨询或查看完整作品集。</p>
-        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-          <a class="btn" href="mailto:mengyufang@LN.hk">发送邮件</a>
-          <a class="btn" href="tel:+85269179643" style="background:transparent;color:var(--text);border:1px solid rgba(0,0,0,0.06)">致电我</a>
-        </div>
-
-        <div style="margin-top:14px" class="note">也可在校园或作品展示中安排线下面谈 — 我在香港与珠海两地均可协调时间。</div>
-      </section>
-
-      <footer class="reveal">
-        <div>© 方孟榆 · 2026 — 现代极简风视觉设计 · 如需定制页面或部署帮助，请告诉我。</div>
-      </footer>
-    </main>
+    <div class="signature"><em>Designer</em> ✦ 求职者：方孟榆</div>
   </div>
 
   <script>
-    // Smooth scrolling and nav active state
-    document.querySelectorAll('a.nav-link').forEach(link=>{
-      link.addEventListener('click', e=>{
-        e.preventDefault();
-        const id = link.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if(el){
-          el.scrollIntoView({behavior:'smooth',block:'start'});
-          history.replaceState(null,'', '#'+id);
+    const skillMap = {
+      brand: {
+        title: '品牌设计',
+        summary: '从品牌定位到视觉输出，构建清晰、可识别、可持续传播的视觉系统。',
+        list: ['品牌视觉识别与策略','海报、门店视觉与宣传物料','统一品牌语气与传播表现']
+      },
+      ui: {
+        title: 'UI / 交互',
+        summary: '把信息架构和使用逻辑整理成直观、舒服且容易理解的体验界面。',
+        list: ['信息结构与页面布局设计','移动端与小程序交互方案','界面优化与体验迭代']
+      },
+      pack: {
+        title: '包装设计',
+        summary: '根据产品特征和品牌风格，将包装转化为更容易被记住的消费体验。',
+        list: ['产品包装视觉与结构设计','IP 形象与文化主题包装','实物落地与传播升级']
+      },
+      ill: {
+        title: '插画创作',
+        summary: '以手绘、人物和场景表达来增强品牌情绪和故事感，让作品更有辨识度。',
+        list: ['原创插画与品牌角色设定','内容配图与活动视觉插画','故事化表达与情绪叙述']
+      },
+      visual: {
+        title: '视觉策划',
+        summary: '从传播目的、受众和节点整理内容策略，确保视觉呈现更有冲击力和效率。',
+        list: ['专题活动视觉统筹','社媒内容与物料部署','视觉节奏与传播节奏设计']
+      },
+      motion: {
+        title: '动态内容',
+        summary: '结合节奏感和动画语言，把静态内容转成更容易吸引注意力的演示内容。',
+        list: ['短视频脚本与视觉节奏','活动展示和动态海报','内容制式与品牌动效支持']
+      }
+    };
+
+    const buttons = document.querySelectorAll('.doodle-note');
+    const title = document.getElementById('skill-title');
+    const summary = document.getElementById('skill-summary');
+    const list = document.getElementById('skill-list');
+
+    function renderSkill(key) {
+      const item = skillMap[key];
+      if (!item) return;
+      title.textContent = item.title;
+      summary.textContent = item.summary;
+      list.innerHTML = item.list.map(v => `<li>${v}</li>`).join('');
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.skill === key));
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => renderSkill(btn.dataset.skill));
+      btn.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          renderSkill(btn.dataset.skill);
         }
       });
     });
-
-    // IntersectionObserver for reveal animations and nav highlighting
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting) en.target.classList.add('in-view');
-      });
-    }, {threshold:0.14});
-    reveals.forEach(r=>io.observe(r));
-
-    // Highlight nav link of current section
-    const sections = Array.from(document.querySelectorAll('main section, main footer'));
-    const navLinks = document.querySelectorAll('nav a.nav-link');
-    const ioNav = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){
-          const id = en.target.id;
-          navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+id));
-        }
-      });
-    }, {threshold:0.35});
-    sections.forEach(s=>ioNav.observe(s));
-
-    // Simple project click handler (placeholder)
-    function openProject(title){
-      // Replace with modal or link to project detail / image lightbox
-      alert(title + "\\n如需可将该项目链接至独立作品页或打开图片画廊。");
-    }
-
-    // Respect reduced motion preference: disable scroll animations if requested
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if(media.matches){
-      document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));
-    }
-
-    // Minor performance: lazy set focus outline only on keyboard navigation
-    (function(){
-      function handleFirstTab(e){
-        if(e.key === 'Tab'){
-          document.body.classList.add('user-is-tabbing');
-          window.removeEventListener('keydown', handleFirstTab);
-        }
-      }
-      window.addEventListener('keydown', handleFirstTab);
-    })();
   </script>
 </body>
 </html>
